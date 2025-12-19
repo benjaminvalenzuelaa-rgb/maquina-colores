@@ -27,9 +27,9 @@
     .machine {
       background: linear-gradient(180deg, #e53935, #b71c1c);
       border-radius: 20px 20px 30px 30px;
-      padding: 100px 20px 35px;
+      padding: 100px 20px 40px;
       max-width: 360px;
-      margin: 220px auto 0; /* espacio extra para la bola */
+      margin: 300px auto 0; /* MÁS ABAJO */
       box-shadow: 0 10px 20px rgba(0,0,0,0.25);
       position: relative;
       border: 4px solid #8e0000;
@@ -54,7 +54,7 @@
       box-shadow: inset 0 0 25px rgba(255,255,255,0.8);
     }
 
-    /* PERILLA / SELECTOR */
+    /* SELECTOR */
     .colors {
       margin: 20px 0 15px;
     }
@@ -69,26 +69,45 @@
       box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
     }
 
-    /* SALIDA DEL CHICLE */
+    /* SALIDA */
     .output {
       margin-top: 25px;
+      position: relative;
+      height: 130px;
     }
 
     .slot {
       width: 120px;
       height: 28px;
       background: #222;
-      margin: 0 auto 10px;
+      margin: 0 auto;
       border-radius: 8px;
     }
 
-    .result {
-      width: 130px;
-      height: 70px;
-      margin: auto;
-      border-radius: 0 0 22px 22px;
-      border: 4px solid #333;
-      background: #eee;
+    .gum {
+      width: 60px;
+      height: 40px;
+      border-radius: 50%;
+      position: absolute;
+      top: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+    }
+
+    .gum.drop {
+      animation: drop 0.9s ease-out forwards;
+    }
+
+    @keyframes drop {
+      0% {
+        transform: translate(-50%, 0);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, 70px);
+        opacity: 1;
+      }
     }
   </style>
 </head>
@@ -101,7 +120,6 @@
   <div class="machine">
 
     <div class="colors">
-      <!-- Selector de color libre -->
       <input
         type="color"
         class="color-btn"
@@ -112,19 +130,11 @@
 
     <div class="output">
       <div class="slot"></div>
-      <div id="result" class="result"></div>
+      <div id="gum" class="gum"></div>
     </div>
 
   </div>
 
   <script>
-    // Regla oculta de la máquina: siempre mezcla con amarillo
-    function mix(r, g, b) {
-      const yellow = { r: 255, g: 255, b: 0 };
+    /
 
-      const outR = Math.floor((r + yellow.r) / 2);
-      const outG = Math.floor((g + yellow.g) / 2);
-      const outB = Math.floor((b + yellow.b) / 2);
-
-      document.getElementById("result").style.background =
-        `rgb(${o
