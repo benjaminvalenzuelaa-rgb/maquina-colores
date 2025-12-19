@@ -29,13 +29,13 @@
       border-radius: 20px 20px 30px 30px;
       padding: 100px 20px 35px;
       max-width: 360px;
-      margin: 100px auto 0;
+      margin: 220px auto 0; /* espacio extra para la bola */
       box-shadow: 0 10px 20px rgba(0,0,0,0.25);
       position: relative;
       border: 4px solid #8e0000;
     }
 
-    /* CÚPULA TRANSPARENTE */
+    /* CÚPULA DE CRISTAL */
     .machine::before {
       content: "";
       position: absolute;
@@ -54,7 +54,7 @@
       box-shadow: inset 0 0 25px rgba(255,255,255,0.8);
     }
 
-    /* SELECTOR / PERILLA */
+    /* PERILLA / SELECTOR */
     .colors {
       margin: 20px 0 15px;
     }
@@ -118,5 +118,13 @@
   </div>
 
   <script>
-    // Regla de la máquina: SIEMPRE mezcla con amarillo
-    fu
+    // Regla oculta de la máquina: siempre mezcla con amarillo
+    function mix(r, g, b) {
+      const yellow = { r: 255, g: 255, b: 0 };
+
+      const outR = Math.floor((r + yellow.r) / 2);
+      const outG = Math.floor((g + yellow.g) / 2);
+      const outB = Math.floor((b + yellow.b) / 2);
+
+      document.getElementById("result").style.background =
+        `rgb(${o
